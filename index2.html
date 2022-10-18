@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-analytics.js";
+  
+      const firebaseConfig = {
+        apiKey: "AIzaSyA4ZDUug2Q1eNXc0sL-GwEYuy6rrH2TjBc",
+        authDomain: "vrlab-ad987.firebaseapp.com",
+        projectId: "vrlab-ad987",
+        storageBucket: "vrlab-ad987.appspot.com",
+        messagingSenderId: "48335626802",
+        appId: "1:48335626802:web:76bab51a45c0a490aa922b",
+        measurementId: "G-3TP47DHWTV"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+    <title> Demo </title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: auto;
+        height: auto;
+        background: #1A1A1A;
+        color: rgb(240, 240, 240);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+
+      main{
+        width: 140%;
+        height: 100%;
+        display: flex;
+        color: rgb(26, 134, 98);
+        background-color: None;
+      }
+
+
+      main1{
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(26, 134, 98);
+        background-color: None;
+        display: flex;
+      }
+
+      main2{
+        width: 100%;
+        height: 100%;
+      }
+
+
+    div2 {
+        margin-left: 40px;
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+    
+    div3 {
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);
+        }
+
+    div4 {
+        margin: 30px;
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+
+    button{
+      width: 200px;
+      height: 40px;
+    }
+
+    input_data{
+      width: 450px;
+      height: 100%;
+      margin: 10px;
+      padding-left: 30px;
+      padding-top: 10px;
+      padding-right: 1px;
+      padding-bottom: 20px;
+      color: rgb(0, 0, 0);
+      border-width: thin;
+      border-color: black;
+      border-style: solid;
+      border: 2px solid rgba(98, 86, 86, 0.25);
+      border-radius: 5px; 
+      display: flex;
+    }
+
+    logo{
+      width: 10px;
+      height: 10px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    img{
+      width: 30%;
+      height: 30%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 50px;
+    }
+  
+    </style>
+</head>
+
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <main1>
+
+        <div3>
+          <button class="button" id="CRP">Cooling Rate Prediction</button>
+        </div3>
+
+        <div3>
+          <button class="button" id="MP" >Melt Prediction</button>
+        </div3>
+
+        <div3>
+          <button class="button" id="PP" >Point Prediction</button>
+        </div3>
+
+        <div3>
+          <button class="button" id="PA" >Predict All</button>
+        </div3>
+
+        <div3>
+          <button class="button" id="Cancel" >Cancel</button>
+        </div3>
+
+    </main1>
+
+    <main>
+      <main2>
+      <input_data>
+        <form>
+          <label for="fname">Laser input energy:</label>
+          <input type="text" id="lie" name="lie"><br><br>
+          <label for="lname">Ambient temperature:</label>
+          <input type="text" id="at" name="at"><br><br>
+          <label for="lname">Substrate preheating temperature:</label>
+          <input type="text" id="spt" name="spt"><br><br>
+          <input type="submit" value="Submit" >
+        </form>
+       
+      </input_data>
+
+      <input_data style="justify-content: center; align-items: center; text-align: center;">
+        <form>
+          <label for="fname">Optimal temperature:</label>
+          <label for="fname">0.0</label>
+        </form>
+      </input_data>
+      
+      <logo>
+        <img src="logotdm.png" />
+        <img src="logovin.png" />
+      </logo>
+
+      </main2>
+
+      <div1 id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width=960 height=720></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+        </div>
+      </div1>
+
+      <main2>
+      <div id="myPlot" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      <div id="myPlot1" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      </main2>
+    </main>
+
+
+
+      <div>
+        <script>
+          var container = document.querySelector("#unity-container");
+          var canvas = document.querySelector("#unity-canvas");
+          var loadingBar = document.querySelector("#unity-loading-bar");
+          var progressBarFull = document.querySelector("#unity-progress-bar-full");
+          var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+          var warningBanner = document.querySelector("#unity-warning");
+    
+          function unityShowBanner(msg, type) {
+            function updateBannerVisibility() {
+              warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+            }
+            var div = document.createElement('div');
+            div.innerHTML = msg;
+            warningBanner.appendChild(div);
+            if (type == 'error') div.style = 'background: red; padding: 10px;';
+            else {
+              if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+              setTimeout(function() {
+                warningBanner.removeChild(div);
+                updateBannerVisibility();
+              }, 5000);
+            }
+            updateBannerVisibility();
+          }
+    
+          var buildUrl = "Build";
+          var loaderUrl = buildUrl + "/demo.loader.js";
+          var config = {
+            dataUrl: buildUrl + "/demo.data.unityweb",
+            frameworkUrl: buildUrl + "/demo.framework.js.unityweb",
+            codeUrl: buildUrl + "/demo.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Virtual_lab",
+            productName: "Demo",
+            productVersion: "0.1",
+            showBanner: unityShowBanner,
+          };
+    
+          if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            // Mobile device style: fill the whole browser client area with the game canvas:
+    
+            var meta = document.createElement('meta');
+            meta.name = 'viewport';
+            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+            document.getElementsByTagName('head')[0].appendChild(meta);
+            container.className = "unity-mobile";
+    
+            // To lower canvas resolution on mobile devices to gain some
+            // performance, uncomment the following line:
+            // config.devicePixelRatio = 1;
+    
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+    
+            unityShowBanner('WebGL builds are not supported on mobile devices.');
+          } else {
+            // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+    
+            canvas.style.width = "960px";
+            canvas.style.height = "650px";
+          }
+    
+          loadingBar.style.display = "block";
+    
+          var script = document.createElement("script");
+          script.src = loaderUrl;
+          script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+              progressBarFull.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+              loadingBar.style.display = "none";
+              fullscreenButton.onclick = () => {
+                unityInstance.SetFullscreen(1);
+              };
+            }).catch((message) => {
+              alert(message);
+            });
+          };
+          document.body.appendChild(script);
+        </script>
+        </div>
+
+
+
+    <div1> 
+     
+         <script>
+
+            ( async() => 
+            {
+    
+                const data1 = [];
+                const data2 = [];
+                const data3 = [];
+                const labelsa = [];
+                
+                let workbook = XLSX.read(await (await fetch("./data.csv")).arrayBuffer());
+                console.log(workbook);
+                const name = [workbook.Sheets.Sheet1.A1.v, workbook.Sheets.Sheet1.B1.v, workbook.Sheets.Sheet1.C1.v];
+                console.log(name);
+    
+    
+                for(let i = 1; i < 1978; i++){
+    
+                    const locale1 = "A"+i;
+                    const locale2 = "B"+i;
+                    const locale3 = "C"+i;
+
+                    data1[i-1] = workbook.Sheets.Sheet1[locale1].v.slice(1,workbook.Sheets.Sheet1[locale1].v.length-1);
+                    data2[i-1] = workbook.Sheets.Sheet1[locale2].v.slice(1,workbook.Sheets.Sheet1[locale2].v.length-1);
+                    data3[i-1] = workbook.Sheets.Sheet1[locale3].v.slice(1,workbook.Sheets.Sheet1[locale3].v.length-1);
+    
+                    labelsa[i] = i;
+                }
+  
+                // Define Data
+                var data = [
+                  {x: labelsa, y: data1, mode:"lines", name: name[0]},
+                  {x: labelsa, y: data2, mode:"lines", name: name[1]},
+                  {x: labelsa, y: data3, mode:"lines", name: name[2]}
+                ];
+  
+                //Define Layout
+                var layout = {title: "Melt_Prediction"};
+  
+                // Display using Plotly
+                Plotly.newPlot("myPlot", data, layout);
+                })();
+
+        </script>
+
+        <script>
+        
+        (
+            async() => {
+        
+                const data1 = [];
+                const data2 = [];
+                const data3 = [];
+                const labelsa = [];
+                let j=2;
+                
+                let workbook = XLSX.read(await (await fetch("./data.csv")).arrayBuffer());
+                console.log(workbook);
+                const name = [workbook.Sheets.Sheet1.A1.v, workbook.Sheets.Sheet1.B1.v, workbook.Sheets.Sheet1.C1.v];
+                console.log(name);
+        
+                function data_update(j){
+                for(let i = 2; i < j; i++){
+        
+                    const locale1 = "A"+i;
+                    const locale2 = "B"+i;
+                    const locale3 = "C"+i;
+        
+                    data1[i-2] = workbook.Sheets.Sheet1[locale1].v.slice(1,workbook.Sheets.Sheet1[locale1].v.length-1);
+                    data2[i-2] = workbook.Sheets.Sheet1[locale2].v.slice(1,workbook.Sheets.Sheet1[locale2].v.length-1);
+                    data3[i-2] = workbook.Sheets.Sheet1[locale3].v.slice(1,workbook.Sheets.Sheet1[locale3].v.length-1);
+        
+                    labelsa[i-2] = i-2;
+                    console.log(data1[0]);
+                    console.log(labelsa[0]);
+        
+                }}
+        
+                // Define Data
+                var data = [
+                {x: labelsa, y: data1, mode:"lines", name: name[0]},
+                {x: labelsa, y: data2, mode:"lines", name: name[1]},
+                {x: labelsa, y: data3, mode:"lines", name: name[2]}
+                ];
+        
+                //Define Layout
+                var layout = {title: "Melt_Prediction"};
+        
+                // Display using Plotly
+                Plotly.newPlot("myPlot1", data, layout);
+        
+                function update () {
+                if (j<1979){
+                    j = j+2
+                }
+                if (j > 1978){
+                    j = 1978
+                }
+                if (j < 1979){data_update(j);}
+                Plotly.animate('myPlot1', {
+                    data: data
+                },
+                {layout:{
+                    xaxis: {range: [labelsa[j]-100, labelsa[j]]},
+                    // yaxis: {range: [min, max]}
+                }
+        
+                },{
+                    transition: {
+                    duration: 0,
+                    },
+                    frame: {
+                    duration: 0,
+                    redraw: true,
+                    }
+                });
+                requestAnimationFrame(update);
+                }
+                requestAnimationFrame(update);
+        })();
+        
+        </script>
+        
+    </div1> 
+    </main>
+
+  </body>
+</html>
+

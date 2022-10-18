@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title> Demo </title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        font-size: 10px;
+        font-weight: 100;
+      }
+
+      .chartMenu {
+        width: auto;
+        height: auto;
+        background: #1A1A1A;
+        color: rgb(240, 240, 240);
+      }
+
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+
+      main{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background-color: None;
+      }
+
+      main1{
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(26, 134, 98);
+        background-color: None;
+        display: flex;
+      }
+
+      main2{
+        width: auto;
+        height: 100%;
+      }
+
+      main3{
+      width: 100%;
+      height: 25vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      /* color: rgb(0, 0, 0); */
+      background-image: url("./bga.jpg");
+      }
+
+      main4{
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      /* color: rgb(0, 0, 0); */
+      /* background-image: url("./bga.jpg"); */
+      }
+
+    section h1 {
+      font-size: 60px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    section h2 {
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    section h3 {
+      font-size: 15px;
+      text-transform: uppercase;
+    }
+
+    section h4 {
+      font-size: 10px;
+      /* text-transform: uppercase; */
+      /* align-items: flex-end; */
+      /* justify-content: flex-start; */
+      text-align: left;
+      margin-left: 10%;
+    }
+      a{
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+        color: #fff;
+        margin: 20px 0px 20px 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+    div2 {
+        margin-left: 40px;
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+    
+    div3 {
+        margin: 10px;
+        padding: 2px;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);
+        }
+
+    div4 {
+        margin-left: 10px;
+        /* padding: 30px; */
+        display: flex;
+        text-align: center;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: xx-large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgb(255, 5, 5);
+        background-color: rgb(255, 255, 255);}
+
+    button{
+      width: 85px;
+      height: auto;
+      font-size: 10px;
+      padding: 3px;
+    }
+
+    input_data{
+      width: 300px;
+      height: 100%;
+      margin: 10px;
+      padding-left: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: rgb(0, 0, 0);
+      border-width: thin;
+      border-color: black;
+      border-style: solid;
+      border: 2px solid rgba(98, 86, 86, 0.25);
+      border-radius: 5px; 
+      display: flex;
+    }
+
+    logo{
+      width: 10px;
+      height: 10px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    img{
+      width: 10%;
+      height: 10%;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin: 10px;
+    }
+
+    nav1 {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #055083;
+    }
+
+    nav1 .fooder {
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      /* margin: 20px 0px 20px 0px; */
+      font-size: x-large;
+    }
+
+    nav2 {
+      width: 100%;
+      height: 50px;
+      font-size: xx-large;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #4893c5;
+    }
+
+  
+  
+    </style>
+</head>
+
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <main2>
+      <logo>
+        <img src="logotdm.png" />
+        <img src="logovin.png" />
+      </logo>
+    </main2>
+
+    <main3>
+      <section>
+        <h1>Virtual Lab</h1>
+        <h2>MÔ PHỎNG QUÁ TRÌNH IN 3D</h2>
+      </section>
+    </main3>
+
+    <main>
+      <main2>
+      <input_data>
+        <form class="form">
+          <label>Velocity:</label>
+          <input type="number" id="velocity" name="velocity" min="10" max="120" value="10">
+          <input type="range" id="velocityr" name="velocityr" min="10" max="120" value="10"><br><br>
+
+          <label>Laser input energy:</label>
+          <input type="number" id="lie" name="lie" min="1" max="20" value="1">
+          <input type="range" id="lier" name="lier" min="1" max="20" value="1"><br><br>
+
+          <label>Ambient temperature:</label>
+          <input type="number" id="at" name="at" min="10" max="10000" value="10">
+          <input type="range" id="atr" name="atr" min="10" max="10000" value="10"><br><br>
+
+          <label>Substrate preheating temperature:</label>
+          <input type="number" id="spt" name="spt" min="10" max="10000" value="10">
+          <input type="range" id="sptr" name="sptr" min="10" max="10000" value="10"><br><br>
+        </form>
+      </input_data>
+
+      <input_data style="justify-content: center; align-items: center; text-align: center;">
+        <form>
+          <label>Optimal temperature:</label>
+          <label id="Output">0.0</label>
+        </form>
+      </input_data>
+      
+      <div3>
+        <button class="button" id="MP" >Melt Prediction</button>
+      </div3>
+
+      <div3>
+        <button class="button" id="PP" >Point Prediction</button>
+      </div3>
+
+      <div3>
+        <button class="button" id="Reset" >Reset</button>
+      </div3>
+
+      <br>
+      <br>
+      <div3>
+        <button class="button" id="btn-print" >Print Report</button>
+      </div3>
+
+      </main2>
+
+      <div1 id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas" width=600 height=500></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+        </div>
+      </div1>
+
+      <!-- <main2>
+      <div id="myPlot" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      <div id="myPlot1" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      </main2> -->
+      
+      
+      <!-- <main2>
+        <div4>Hướng dẫn</div4>
+      </main2> -->
+
+      <main4>
+        <section>
+          <!-- <h1>Virtual Lab</h1> -->
+          <br>
+          <br>  
+          <h2> Hướng dẫn</h2>
+          <h3>Virtual lab</h3>
+          <br>
+          <br>
+          <br>
+          <h4><b>Bước 1:  </b>   Thiết lập thông số in</h4>
+          <br>
+          <h4><b>Bước 2:  </b>   Chọn Melt Prediction hoặc Point Prediction</h4>
+          <br>
+          <h4><b>Bước 3:  </b>   Chọn Print Report để lưu file báo cáo nếu cần</h4>
+          <br>
+          <h4><b>Bước 4:  </b>   Chọn reset để thiết lập lại thông số in</h4>
+          <br>
+          <br>
+          <img src="/demo.png"  style="width: 50%; height: 50%; margin:auto; padding: auto;" />
+        </section>
+      </main4>
+
+
+    </main>
+  
+
+  <main>
+    <nav2>
+      <section>
+        <h2> Chart </h2>
+      </section>
+    </nav2>
+  </main>
+
+    <main>
+      <main2>
+        <div id="myPlot" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      </main2>
+      <main2>
+        <div id="myPlot1" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      </main2>
+    </main>
+
+
+    <iframe
+    id="frame"
+    style="width: 100%; border: 0; height: 0"
+    src="report.html"
+  ></iframe>
+
+  <main2>
+    <nav1>
+      <div class="fooder"> 
+        <a href="https://www.w3schools.com/Html/html_links.asp">Giới thiệu</a>
+        <a href="https://www.w3schools.com/Html/html_links.asp">Chính sách</a>
+        <a href="https://www.w3schools.com/Html/html_links.asp">Tin tức</a>
+        <a href="https://www.w3schools.com/Html/html_links.asp">Liên hệ</a>
+        <a href="https://www.w3schools.com/Html/html_links.asp">Hỏi đáp</a>
+      </div>
+    </nav1>
+  </main2>
+
+  <script src="./config.js"></script>
+  <script src="./script0.js"></script>
+  <script src="./script.js"></script>
+  <script src="./custom.js"></script>
+
+  </body>
+
+</html>
