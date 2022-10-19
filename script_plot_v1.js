@@ -213,7 +213,7 @@ firebase
         ];
 
         //Define Layout
-        var layoutx = {title: "Melt Prediction"};
+        var layoutx = { xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Melt Prediction"};
 
         // Display using Plotly
         Plotly.newPlot("myPlot", datax, layoutx);
@@ -240,7 +240,7 @@ firebase
           ];
    
           //Define Layout
-          var layout = {title: "Melt Prediction"};
+          var layoutx = { xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Melt Prediction"};
    
           // Display using Plotly
           Plotly.newPlot("myPlot1", data, layout);
@@ -328,7 +328,8 @@ document.getElementById("PP").onclick = function Plot_PP(){
           ];
   
           //Define Layout
-          var layoutx = {title: "Point Prediction"};
+
+          var layoutx = {xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Point Prediction"};
   
           // Display using Plotly
           Plotly.newPlot("myPlot", datax, layoutx);
