@@ -213,7 +213,7 @@ firebase
         ];
 
         //Define Layout
-        var layoutx = { xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Melt Prediction"};
+        var layoutx = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm"}, title: "Melt Prediction"};
 
         // Display using Plotly
         Plotly.newPlot("myPlot", datax, layoutx);
@@ -240,10 +240,10 @@ firebase
           ];
    
           //Define Layout
-          var layoutx = { xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Melt Prediction"};
+          var layoutx = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm"}, title: "Melt Prediction"};
    
           // Display using Plotly
-          Plotly.newPlot("myPlot1", data, layout);
+          Plotly.newPlot("myPlot1", data, layoutx);
    
          function update(){
            if (k<1978){
@@ -329,7 +329,7 @@ document.getElementById("PP").onclick = function Plot_PP(){
   
           //Define Layout
 
-          var layoutx = {xaxis: {title: "Time (ms)"}, yaxis: {title: "&#181;m"}, title: "Point Prediction"};
+          var layoutx = {xaxis: {title: "Time (s)"}, yaxis: {title: "Temperature (K)"}, title: "Point Prediction"};
   
           // Display using Plotly
           Plotly.newPlot("myPlot", datax, layoutx);
@@ -351,10 +351,10 @@ document.getElementById("PP").onclick = function Plot_PP(){
             ];
      
             //Define Layout
-            var layout = {title: "Point Prediction"};
+            var layoutx = {xaxis: {title: "Time (s)"}, yaxis: {title: "Temperature (K)"}, title: "Point Prediction"};
      
             // Display using Plotly
-            Plotly.newPlot("myPlot1", data, layout);
+            Plotly.newPlot("myPlot1", data, layoutx);
      
            function update(){
              if (k<1978){
