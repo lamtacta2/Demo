@@ -64,15 +64,21 @@ firebase
               // Define Data
               var datax = [
                 {x: labelsb, y: data4, mode:"lines", name: name[0]},
-                {x: labelsb, y: data5, mode:"lines", name: name[1]},
+                {x: labelsb, y: data5, mode:"lines", name: name[1]}
+              ];
+
+              var datax1 = [
                 {x: labelsb, y: data6, mode:"lines", name: name[2]}
               ];
       
               //Define Layout
-              var layoutx = {title: "Melt Prediction"};
+              var layoutx = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm"}, title: "Melt Width & Melt Depth Prediction"};
+              var layouty = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm^2"}, title: "Melt Area Prediction"};
+      
       
               // Display using Plotly
               Plotly.newPlot("myPlot", datax, layoutx);
+              Plotly.newPlot("myPlot1", datax1, layouty);
          })();
         }
 

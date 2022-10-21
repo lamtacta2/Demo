@@ -5,11 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src='https://cdn.plot.ly/plotly-2.14.0.min.js'></script>
     <title> Demo </title>
 
     <style>
@@ -36,7 +37,7 @@
       main{
         width: 100%;
         height: 100%;
-        display: inline;
+        display: flex;
       }
 
       main1{
@@ -50,16 +51,25 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        display: flex;
+      }
+
+      main5{
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        display: flex;
       }
 
       main3{
-      width: 1260px;
+      width: 100%;
       height: 25vh;
       display: flex;
       justify-content: center;
       align-items: center;
       text-align: center;
-      /* color: rgb(0, 0, 0); */
       background-image: url("./bga.jpg");
       }
 
@@ -70,8 +80,6 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      /* color: rgb(0, 0, 0); */
-      /* background-image: url("./bga.jpg"); */
       }
 
 
@@ -156,8 +164,8 @@
       width: 60%;
       height: 100%;
       justify-content: center;
-        align-items: center;
-        text-align: center;
+      align-items: center;
+      text-align: center;
       margin-bottom: 10px;
       margin-top: 10px;
       margin-left: 20%;
@@ -176,9 +184,9 @@
     logo{
       width: 100%;
       height: 100%;
-      /* justify-content: center;
+      justify-content: center;
       align-items: center;
-      text-align: center; */
+      text-align: center;
       display: flex;
     }
 
@@ -292,9 +300,9 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <logo>
-      <img src="logotdm.png" style="margin-left: 100px;"/>
+      <img src="logotdm.png" />
 
-      <img src="logovin_v1.png" style="margin-left: 800px; margin-right: 100px; height: 65px;"/>
+      <img src="logovin_v1.png" style="margin-left: 100px; height: 65px;"/>
     </logo>
 
     <main3>
@@ -331,18 +339,18 @@
         <input_data>
           <form class="form">
             <label>Velocity (mm/s):</label>
-            <input type="number" id="velocity" name="velocity" min="10" max="120" value="10">
-            <input type="range" id="velocityr" name="velocityr" min="10" max="120" value="10"><br><br>
+            <input type="number" id="velocity" name="velocity" min="10" max="1000" value="10">
+            <input type="range" id="velocityr" name="velocityr" min="10" max="1000" value="10"><br><br>
             
-            <label>Laser input power (W):</label>
+            <label>Laser power (W):</label>
             <input type="number" id="lie" name="lie" min="1" max="9" value="1">
             <input type="range" id="lier" name="lier" min="1" max="9" value="1"><br><br>
 
-            <label>Ambient temperature (<sup>o</sup>K):</label>
+            <label>Ambient temperature (K):</label>
             <input type="number" id="at" name="at" min="200" max="299" value="200">
             <input type="range" id="atr" name="atr" min="200" max="299" value="200"><br><br>
 
-            <label>Substrate preheating temperature (<sup>o</sup>K):</label>
+            <label>Substrate preheating temperature (K):</label>
             <input type="number" id="spt" name="spt" min="500" max="599" value="500" >
             <input type="range" id="sptr" name="sptr" min="500" max="599" value="500"><br><br>
           </form>
@@ -393,12 +401,12 @@
     </main4>
 
     <main id="Result">
-      <main2>
-        <div id="myPlot"></div>
-      </main2>
-      <main2>
-        <div id="myPlot1"></div>
-      </main2>
+      <main5>
+        <div id="myPlot" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+        <div id="myPlot1" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+        <div id="myPlot2" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+        <div id="myPlot3" style="width:100%;max-width:570px;height: 100%;max-height: 360px"></div>
+      </main5>
     </main>
 
 <iframe
@@ -410,7 +418,7 @@
 
   <script src="./config.js"></script>
   <script src="./vl_v1.js"></script>
-  <script src="./script_plot_v1.js"></script>
+  <script src="./script_plot_v2.js"></script>
   <script src="./custom.js"></script>
 
   <script>
