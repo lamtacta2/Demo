@@ -73,7 +73,7 @@ firebase
       
               //Define Layout
               var layoutx = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm"}, title: "Melt Width & Melt Depth Prediction"};
-              var layouty = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm^2"}, title: "Melt Area Prediction"};
+              var layouty = { xaxis: {title: "Time (s)"}, yaxis: {title: "mm<sup>2</sup>"}, title: "Melt Area Prediction"};
       
       
               // Display using Plotly
