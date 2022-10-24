@@ -278,12 +278,12 @@
             <input type="range" style="width: 260px;" class="slider" id="lier" name="lier" min="1" max="9" value="1"><br><br>
 
             <label>Ambient temperature (K):</label>
-            <input type="number" id="at" name="at" min="200" max="299" value="200">
-            <input type="range" style="width: 216px;" class="slider" id="atr" name="atr" min="200" max="299" value="200"><br><br>
+            <input type="number" id="at" name="at" min="284" max="312" value="284">
+            <input type="range" style="width: 216px;" class="slider" id="atr" name="atr" min="284" max="312" value="284"><br><br>
 
             <label>Substrate preheating temperature (K):</label>
-            <input type="number" id="spt" name="spt" min="500" max="599" value="500">
-            <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="500" max="599" value="500"><br><br>
+            <input type="number" id="spt" name="spt" min="555" max="591" value="591">
+            <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="555" max="591" value="555"><br><br>
           </form>
         </input_data>
         <input_data style="justify-content: center; align-items: center; text-align: center;">
@@ -334,6 +334,15 @@
     </nav2>
   </main1>
 
+  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" > 1.	Problem description</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 1.	Problem description</h3></section>
+
+  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" > 2.	Numerical results</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 1.	Problem description</h3></section>
+
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.1	Temperature fields and melting pool size</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.1	Temperature fields and melting pool size</h3></section>
+
     <main>
       <main7>
         <div id="myPlot" style="max-height: 300px;"></div>
@@ -341,24 +350,65 @@
       <main7>
         <div id="myPlot1" style="max-height: 300px;"></div>
       </main7>
-      <!-- <main7>
-        <div id="myPlot2" ></div>
+    </main>
+
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.2	Temperature evolutions at five important points</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.2	Temperature evolutions at five important points</h3></section>
+  
+  <main2>
+    <main7>
+        <img src="2.jpg" style="width: 50%; justify-content: center; align-items: center; text-align: center; margin-left: 25%;"/> 
+    </main7>
+  </main2>
+
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.2	Temperature evolutions at five important points</h3></section>
+
+    <main>
+      <main7>
+        <div id="myPlot3" style="max-height: 300px;"></div>
       </main7>
       <main7>
-        <div id="myPlot3"></div>
-      </main7> -->
+        <div id="myPlot4" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot5" style="max-height: 300px;"></div>
+      </main7>
     </main>
 
     <main>
       <main7>
-        <div id="myPlot2" style="max-height: 300px;"></div>
+        <div id="myPlot6" style="max-height: 300px;"></div>
       </main7>
       <main7>
-        <div id="myPlot3" style="max-height: 300px;"></div>
+        <div id="myPlot7" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot8" style="max-height: 300px;"></div>
       </main7>
     </main>
 
-    <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v2.html"></iframe>
+    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.3. Melting pool sizes evolutions</h1></section>
+    <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.3. Melting pool sizes evolutions</h3></section>
+  
+    <main>
+      <main7>
+        <div id="myPlot9" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot10" style="max-height: 300px;"></div>
+      </main7>
+      <main7>
+        <div id="myPlot11" style="max-height: 300px;"></div>
+      </main7>
+    </main>
+
+    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 3. References</h1></section>
+    <section style="margin-left: 10%; margin-top: 2%;"> <h3> [1]</h3></section>
+  
+    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 4.	Acknowledgment</h1></section>
+    <section style="margin-left: 10%; margin-top: 2%;"> <h3> This work was funded by Vingroup and supported by Vingroup Innovation Foundation (VINIF) under project code VINIF.2020.DA15.</h3></section>
+
+    <!-- <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v2.html"></iframe> -->
 
   <main2>
     <nav1>
@@ -374,7 +424,7 @@
 
   <script src="./config.js"></script>
   <script src="./script0.js"></script>
-  <script src="./script_plot_v5.js"></script>
+  <script src="./script_plot_v6.js"></script>
   <script src="./custom.js"></script>
 
   </body>
