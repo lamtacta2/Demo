@@ -53,12 +53,12 @@ var layoutx1 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool witdh (mm)"},
 var layoutx3 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool area (mm<sup>2</sup>)"}, title: "Melt Area Prediction"};
 var layoutx2 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool depth (mm)"}, title: "Melt Depth Prediction"};
 
-var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "substrate N"};
-var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "clad P<sub>1</sub>"};
-var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "clad P<sub>2</sub>"};
-var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "clad P<sub>3</sub>"};
-var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "clad P<sub>4</sub>"};
-var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "clad P<sub>5</sub>"};
+var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Substrate N"};
+var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>1</sub>"};
+var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub>"};
+var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>3</sub>"};
+var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>4</sub>"};
+var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>5</sub>"};
   
 // Plotly.newPlot("myPlot",layoutx);
 // Plotly.newPlot("myPlot1",layoutx1);
@@ -166,6 +166,13 @@ document.getElementById("Run").onclick = function All(){
           data10[1] = workbook3.Sheets.Sheet1["B2"].v;
           data10[2] = workbook3.Sheets.Sheet1["C2"].v;
           data10[3] = workbook3.Sheets.Sheet1["D2"].v;
+
+
+
+          var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub> with cooling rate = " + data10[0].toString().slice(0,7) +"(K/s)"};
+          var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>3</sub> with cooling rate = " + data10[1].toString().slice(0,7) +"(K/s)"};
+          var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>4</sub> with cooling rate = " + data10[2].toString().slice(0,7) +"(K/s)"};
+          var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>5</sub> with cooling rate = " + data10[3].toString().slice(0,7) +"(K/s)"};
 
          function data_update(k){
           for(let i = 2; i < k; i++){
