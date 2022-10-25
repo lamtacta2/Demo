@@ -86,10 +86,10 @@ firebase
 .database()
 .ref("Input")
 .update({
-  Velocity: 10,
-  Laser_input_energy: 1,
-  Ambient_temperature: 10,
-  Substrate_preheating_temperature: 10,
+  Velocity: 1,
+  Laser_input_energy: 0.97,
+  Ambient_temperature: 485,
+  Substrate_preheating_temperature: 556,
   Control: 0,
   control_unity: 0,
   Plot: 0,
@@ -113,6 +113,7 @@ document.getElementById("Reset").onclick = function () {
       control_unity: 0,
       Plot: 0,
     });
+  location.reload();
 }
 
 document.getElementById("Run").onclick = function All(){
