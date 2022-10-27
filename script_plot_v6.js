@@ -2,6 +2,16 @@ var Velocity, Laser_input_energy, Ambient_temperature, Substrate_preheating_temp
 var v = document.getElementById("velocity");
 var vr = document.getElementById("velocityr");
 
+// var DEBUG = false;
+// if (! DEBUG) {
+// if (! window.console) window.console = {};
+// var method = ["log", "debug", "warning", "info"];
+// for (var i = 0; i <method.length; i ++) {
+// console [method ] = function () {};
+// }
+// }
+
+
 vr.value = v.value;
 
 v.oninput = function() {
@@ -53,12 +63,12 @@ var layoutx1 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool witdh (mm)"},
 var layoutx3 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool area (mm<sup>2</sup>)"}, title: "Melt Area Prediction"};
 var layoutx2 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool depth (mm)"}, title: "Melt Depth Prediction"};
 
-var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Substrate N"};
-var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>1</sub>"};
-var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub>"};
-var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>3</sub>"};
-var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>4</sub>"};
-var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>5</sub>"};
+var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"};
+var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub>"};
+var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
   
 // Plotly.newPlot("myPlot",layoutx);
 // Plotly.newPlot("myPlot1",layoutx1);
@@ -137,9 +147,15 @@ document.getElementById("Run").onclick = function All(){
           let T_s =  document.getElementById("at").value;
           let T_c =  document.getElementById("spt").value;
 
-          T_s = 284 + (T_s-284-(T_s-284)%4);
-          T_c = 555 + (T_c-555-(T_c-555)%4);
-
+          if (p>= 1){
+            T_s = 285 + (T_s-285-(T_s-285)%4);
+            T_c = 556 + (T_c-556-(T_c-556)%4);
+          } else{
+            T_s = 284 + (T_s-284-(T_s-284)%4);
+            T_c = 555 + (T_c-555-(T_c-555)%4);
+          }
+         
+          
           const data1 = [];
           const data2 = [];
           const data3 = [];
@@ -155,9 +171,9 @@ document.getElementById("Run").onclick = function All(){
 
           let k=2;
         
-          let url1 = 'https://raw.githubusercontent.com/lamtacta2/Data1/main/data1' + p.toString() + T_s.toString() + T_c.toString();
-          let url2 = 'https://raw.githubusercontent.com/lamtacta2/Data1/main/data2' + p.toString() + T_s.toString() + T_c.toString();
-          let url3 = 'https://raw.githubusercontent.com/lamtacta2/Data1/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+          let url1 = 'https://raw.githubusercontent.com/anh231000/Data/main/data1' + p.toString() + T_s.toString() + T_c.toString();
+          let url2 = 'https://raw.githubusercontent.com/anh231000/Data/main/data2' + p.toString() + T_s.toString() + T_c.toString();
+          let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
           let workbook1 = XLSX.read(await (await fetch(url1)).arrayBuffer());
           let workbook2 = XLSX.read(await (await fetch(url2)).arrayBuffer());
           let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
@@ -167,7 +183,30 @@ document.getElementById("Run").onclick = function All(){
           data10[2] = workbook3.Sheets.Sheet1["C2"].v;
           data10[3] = workbook3.Sheets.Sheet1["D2"].v;
 
-
+          while(data10[0].toString() == "nan"){
+            T_c = T_c + 4;
+            let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            data10[0] = workbook3.Sheets.Sheet1["A2"].v;
+          }
+          while(data10[1].toString() == "nan"){
+            T_c = T_c + 4;
+            let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            data10[1] = workbook3.Sheets.Sheet1["B2"].v;
+          }
+          while(data10[2].toString() == "nan"){
+            T_c = T_c + 4;
+            let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            data10[2] = workbook3.Sheets.Sheet1["C2"].v;
+          }
+          while(data10[3].toString() == "nan"){
+            T_c = T_c + 4;
+            let url3 = 'https://raw.githubusercontent.com/anh231000/Data/main/data3' + p.toString() + T_s.toString() + T_c.toString();
+            let workbook3 = XLSX.read(await (await fetch(url3)).arrayBuffer());
+            data10[3] = workbook3.Sheets.Sheet1["D2"].v;
+          }
 
           var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub> with cooling rate = " + data10[0].toString().slice(0,7) +"(K/s)"};
           var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>3</sub> with cooling rate = " + data10[1].toString().slice(0,7) +"(K/s)"};
