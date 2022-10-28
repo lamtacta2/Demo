@@ -98,6 +98,15 @@
       text-transform: uppercase;
     }
 
+    section i{
+      font-size: 15px;
+    }
+
+    section h6 {
+      font-size: 15px;
+      text-transform: none;
+    }
+
     section h3 {
       font-size: 15px;
       text-transform: uppercase;
@@ -232,7 +241,7 @@
   </head>
 
   <body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcpH67teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.6.1/d3.min.js" integrity="sha512-MefNfAGJ/pEy89xLOFs3V6pYPs6AmUhXJrRlydI/9wZuGrqxmrdQ80zKHUcyadAcph37teDZcBeS6oMJLPtTqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <logo>
@@ -273,11 +282,11 @@
             <br>
             <label>Velocity (mm/s):</label>
             <input type="number" id="velocity" name="velocity" min="1" max="1000" value="1">
-            <input type="range" style="width: 250px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"><br><br>
+            <input type="range" style="width: 255px;" class="slider" id="velocityr" name="velocityr" min="1" max="1000" value="1"><br><br>
             
-            <label>Laser power (W):</label>
+            <label>Laser power (kW):</label>
             <input type="number" id="lie" name="lie" min="0.97" max="1.03" value="0.97">
-            <input type="range" style="width: 249px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"><br><br>
+            <input type="range" style="width: 245px;" class="slider" id="lier" name="lier" min="97" max="103" value="97"><br><br>
 
             <label>Ambient temperature (K):</label>
             <input type="number" id="at" name="at" min="285" max="312" value="285">
@@ -288,12 +297,34 @@
             <input type="range" style="width: 160px;" class="slider" id="sptr" name="sptr" min="556" max="591" value="556"><br><br>
           </form>
         </input_data>
-        <!-- <input_data style="justify-content: center; align-items: center; text-align: center;">
-          <form >
-            <label style="font-size: 120%;">Cooling rate (K/s):</label>
-            <label id="Output" style="font-size: 120%;">0.0</label>
+        <input_data>
+          <form class="form">
+            <section>
+                <h3 style="justify-content: center; align-items: center; text-align: center;">Parametter Object</h3>
+            </section>
+            <br>
+            <label>Length (mm):</label>
+            <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 275px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br>
+            
+            <label>Width (mm):</label>
+            <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 280px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br>
+
+            <label style="padding-left: 0px;">Depth (mm):</label>
+            <input type="number" id="input_z"  name="input_z" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 280px;" class="slider"  name="input_z1" id="input_z1" min="1" max="5" value="1"><br><br>
+            
+            <label>Tốc độ cấp bột(g/min):</label>
+            <input type="number" id="input_x" name="input_x" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 240px;" class="slider" name="input_x1" id="input_x1" min="1" max="5" value="1"><br><br>
+            
+            <label>Lưu lượng cấp khí (l/min):</label>
+            <input type="number" id="input_y" name="input_y" min="0.1" max="0.5" value="0.1">
+            <input type="range" style="width: 220px;" class="slider"  name="input_y1" id="input_y1" min="1" max="5" value="1"><br><br>
+
           </form>
-        </input_data> -->
+        </input_data>
         <br>
         <div3>
           <button class="button" id="Run" style="margin-left: 15%;">Run</button>
@@ -321,7 +352,7 @@
           <br>
           <h4><b>Bước 4:  </b>   Chọn reset để thiết lập lại thông số in</h4>
           <br>
-          <img src="demo.png"  style="width: 50%; height: 50%; padding: auto;" />
+          <img src="c.png"  style="width: 80%; height: 100%; padding: auto;" />
         </section>
       </main6>
       </main2>
@@ -336,14 +367,14 @@
     </nav2>
   </main1>
 
-  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" > 1.	Problem description</h1></section>
-  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 1.	Problem description</h3></section>
+  <!-- <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" >Problem description</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3> Problem description</h3></section>
 
-  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" > 2.	Numerical results</h1></section>
-  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 1.	Problem description</h3></section>
+  <section style="margin-left: 5%; margin-top: 2%;"> <h1 style="font-size: 30px;" >Numerical results</h1></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h3>Problem description</h3></section> -->
 
-  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.1	Temperature fields and melting pool size</h1></section>
-  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.1	Temperature fields and melting pool size</h3></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Temperature fields and melting pool size</h1></section>
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature fields and melting pool size</h3></section> -->
 
     <main>
       <main7>
@@ -356,8 +387,8 @@
       </main7>
     </main>
 
-  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.2	Temperature evolutions at five important points</h1></section>
-  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.2	Temperature evolutions at five important points</h3></section>
+  <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Temperature evolutions at five important points</h1></section>
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature evolutions at five important points</h3></section> -->
   
   <main2>
     <main7>
@@ -365,7 +396,7 @@
     </main7>
   </main2>
 
-  <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.2	Temperature evolutions at five important points</h3></section>
+  <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Temperature evolutions at five important points</h3></section> -->
 
     <main>
       <main7>
@@ -391,8 +422,11 @@
       </main7>
     </main>
 
-    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 2.3. Melting pool sizes evolutions</h1></section>
-    <section style="margin-left: 10%; margin-top: 2%;"> <h3> 2.3. Melting pool sizes evolutions</h3></section>
+    <section style="margin-top: 2%; text-align: center;"> <h6> Fig. 3. The temporospatial temperature field evaluated at six selected points.</h6></section>
+                  
+
+    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" >Melting pool sizes evolutions</h1></section>
+    <!-- <section style="margin-left: 10%; margin-top: 2%;"> <h3>Melting pool sizes evolutions</h3></section> -->
   
     <main>
       <main7>
@@ -406,13 +440,18 @@
       </main7>
     </main>
 
-    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 3. References</h1></section>
-    <section style="margin-left: 10%; margin-top: 2%;"> <h3> [1]</h3></section>
-  
-    <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 4.	Acknowledgment</h1></section>
-    <section style="margin-left: 10%; margin-top: 2%;"> <h3> This work was funded by Vingroup and supported by Vingroup Innovation Foundation (VINIF) under project code VINIF.2020.DA15.</h3></section>
+      <section style="margin-top: 2%; text-align: center;"> <h6> Fig. 4. The melting pool sizes including its  width, depth and area.</h6></section>
+      <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 3. References</h1></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[1] Quy Duc Pham, T., Vinh Hoang, T., Tuan Pham, Q., Phuc Huynh, T., Van Tran, X., El Fetni, S., Duchêne, L., Tran, H.S., & Habraken, A. (2021, April). Data-driven prediction of temperature evolution in metallic additive manufacturing process. In <i>24th International Conference on Material Forming.</i> PoPuPs, Liege, Belgium.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[2] Pham, T. Q. D., Hoang, T. V., Van Tran, X., Pham, Q. T., Fetni, S., Duchêne, L., Tran, H. S & Habraken, A. M. (2022). Fast and accurate prediction of temperature evolutions in additive manufacturing process using deep learning. <i> Journal of Intelligent Manufacturing, </i> 1-19.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[3] Pham, T. Q. D., Hoang, T. V., Tran, X. V., Fetni, S., Duchêne, L., Tran, H. S., & Habraken, A. M. (2022). Characterization, propagation, and sensitivity analysis of uncertainties in the directed energy deposition process using a deep learning-based surrogate model. <i>Probabilistic Engineering Mechanics, </i> 103297.</h6></section>
+      <section style="margin-left: 5%; margin-top: 2%; width: 90%; text-align: justify;"> <h6>[4] Pham, T. Q. D., Hoang, T. V., Tran, X. V., Fetni, S., Duchêne, L., Tran, H. S., & Habraken, A. M. (2022). A framework for robust optimization under uncertainty in the additive manufacturing process. <i> Additive Manufacturing, </i> submitted.</h6></section>
 
-    <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v3.html"></iframe>
+
+      <section style="margin-left: 10%; margin-top: 2%;"> <h1 style="font-size: 25px;" > 4.	Acknowledgment</h1></section>
+      <section style="margin-left: 5%; margin-top: 2%;"> <h3 style="font-size: 15px; text-transform: none;"> This work was funded by Vingroup and supported by Vingroup Innovation Foundation (VINIF) under project code VINIF.2020.DA15.</h3></section>
+  
+    <iframe id="frame" style="width: 100%; border: 0; height: 0" src="report_v4.html"></iframe>
 
   <main2>
     <nav1>

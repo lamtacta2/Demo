@@ -1,16 +1,46 @@
 var Velocity, Laser_input_energy, Ambient_temperature, Substrate_preheating_temperature;
+var x, y, z;
+
+
+var input_x = document.getElementById("input_x");
+var input_x1 = document.getElementById("input_x1");
+var input_y = document.getElementById("input_y");
+var input_y1 = document.getElementById("input_y1");
+var input_z = document.getElementById("input_z");
+var input_z1 = document.getElementById("input_z1");
+
+input_x1.value = input_x.value*10;
+input_y1.value = input_y.value*10;
+input_z1.value = input_z.value*10;
+
+
+input_x.oninput = function() {
+  input_x1.value = this.value*10;
+}
+
+input_x1.oninput = function() {
+  input_x.value = this.value/10;
+}
+
+input_y.oninput = function() {
+  input_y1.value = this.value*10;
+}
+
+input_y1.oninput = function() {
+  input_y.value = this.value/10;
+}
+
+input_z.oninput = function() {
+  input_z1.value = this.value*10;
+}
+
+input_z1.oninput = function() {
+  input_z.value = this.value/10;
+}
+
+
 var v = document.getElementById("velocity");
 var vr = document.getElementById("velocityr");
-
-// var DEBUG = false;
-// if (! DEBUG) {
-// if (! window.console) window.console = {};
-// var method = ["log", "debug", "warning", "info"];
-// for (var i = 0; i <method.length; i ++) {
-// console [method ] = function () {};
-// }
-// }
-
 
 vr.value = v.value;
 
@@ -58,10 +88,9 @@ sptr.oninput = function() {
   spt.value = this.value;
 }
 
-
-var layoutx1 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool witdh (mm)"}, title: "Melt Width Prediction"};
-var layoutx3 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool area (mm<sup>2</sup>)"}, title: "Melt Area Prediction"};
-var layoutx2 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool depth (mm)"}, title: "Melt Depth Prediction"};
+var layoutx1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool witdh M<sub>w</sub> [mm]"}, title: "(a) M<sub>w</sub>"};
+var layoutx3 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool area M<sub>a</sub> [mm<sup>2</sup>]"}, title: "(c) M<sub>a</sub>"};
+var layoutx2 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool depth M<sub>d</sub> [mm]"}, title: "(b) M<sub>d</sub>"};
 
 var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clab N"};
 var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Clad P<sub>2</sub>"};
@@ -70,9 +99,6 @@ var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
 var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
 var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
   
-// Plotly.newPlot("myPlot",layoutx);
-// Plotly.newPlot("myPlot1",layoutx1);
-// Plotly.newPlot("myPlot2",layoutx2);
 Plotly.newPlot("myPlot3",layoutx4);
 Plotly.newPlot("myPlot4",layoutx5);
 Plotly.newPlot("myPlot5",layoutx6);
@@ -90,6 +116,9 @@ function readFom() {
   Laser_input_energy = parseFloat(document.getElementById("lie").value);
   Ambient_temperature = parseFloat(document.getElementById("at").value);
   Substrate_preheating_temperature = parseFloat(document.getElementById("spt").value);
+  x =  parseFloat(document.getElementById("input_x").value);
+  y =  parseFloat(document.getElementById("input_y").value);
+  z =  parseFloat(document.getElementById("input_z").value);
 }
 
 firebase
@@ -103,6 +132,9 @@ firebase
   Control: 0,
   control_unity: 0,
   Plot: 0,
+  x: 0,
+  y: 0,
+  z: 0,
 });
 
 document.getElementById("Reset").onclick = function () {
@@ -111,6 +143,9 @@ document.getElementById("Reset").onclick = function () {
   document.getElementById("lie").value = 0.97;
   document.getElementById("at").value = 284;
   document.getElementById("spt").value = 555;
+  document.getElementById("input_x").value = 0.1;
+  document.getElementById("input_x").value = 0.1;
+  document.getElementById("input_z").value = 0,1;
   firebase
     .database()
     .ref("Input")
@@ -122,6 +157,9 @@ document.getElementById("Reset").onclick = function () {
       Control: 0,
       control_unity: 0,
       Plot: 0,
+      x: 0,
+      y: 0,
+      z: 0,
     });
   location.reload();
 }
@@ -139,6 +177,9 @@ document.getElementById("Run").onclick = function All(){
         Control: 1,
         control_unity: 1,
         Plot: 1,
+        x: x,
+        y: y,
+        z: z,
         });
         
         (async() => {

@@ -121,16 +121,16 @@ firebase
                 labelsb[i-1] = workbook2.Sheets.Sheet1[locale1].v.slice(1,workbook2.Sheets.Sheet1[locale1].v.length-1);  
             }
 
-            var layoutx1 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool witdh (mm)"}, title: "Melt Width Prediction"};
-            var layoutx3 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool area (mm<sup>2</sup>)"}, title: "Melt Area Prediction"};
-            var layoutx2 = { xaxis: {title: "L"}, yaxis: {title: "Melting pool depth (mm)"}, title: "Melt Depth Prediction"};
+            var layoutx1 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool witdh M<sub>w</sub> [mm]"}, title: "(a) M<sub>w</sub>"};
+            var layoutx3 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool area M<sub>a</sub> [mm<sup>2</sup>]"}, title: "(b) M<sub>a</sub>"};
+            var layoutx2 = { xaxis: {title: "Layout number L"}, yaxis: {title: "Melting pool depth M<sub>d</sub> [mm]"}, title: "(c) M<sub>d</sub>"};
             
             var layoutx4 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
             var layoutx5 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
-            var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Cooling rate = " + data10[0].toString().slice(0,7) +"(K/s)"};
-            var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Cooling rate = " + data10[1].toString().slice(0,7) +"(K/s)"};
-            var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "cooling rate = " + data10[2].toString().slice(0,7) +"(K/s)"};
-            var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}, title: "Cooling rate = " + data10[3].toString().slice(0,7) +"(K/s)"};
+            var layoutx6 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+            var layoutx7 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+            var layoutx8 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
+            var layoutx9 = {xaxis: {title: "t (s)"}, yaxis: {title: "T (K)"}};
               
             // Define Data
             var datax1 = [{x: labelsa, y: data1, mode:"lines"}];
